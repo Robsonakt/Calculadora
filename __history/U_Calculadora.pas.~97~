@@ -1,0 +1,300 @@
+unit U_Calculadora;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Edit;
+
+type
+  TForm1 = class(TForm)
+    btn_5: TButton;
+    btn_7: TButton;
+    btn_8: TButton;
+    btn_1: TButton;
+    btn_2: TButton;
+    btn_4: TButton;
+    btn_9: TButton;
+    btn_3: TButton;
+    btn_6: TButton;
+    btn_ponto: TButton;
+    bnt_0: TButton;
+    bnt_igual: TButton;
+    bnt_adicao: TButton;
+    bnt_subtracao: TButton;
+    bnt_divicao: TButton;
+    bnt_multi: TButton;
+    caixa_botoes: TLayout;
+    caixa_topo: TLayout;
+    Lb_n1: TLabel;
+    Lb_n2: TLabel;
+    Lb_Operador: TLabel;
+    Btn_apagar: TButton;
+    Btn_Zera: TButton;
+    procedure bnt_adicaoClick(Sender: TObject);
+    procedure bnt_subtracaoClick(Sender: TObject);
+    procedure bnt_divicaoClick(Sender: TObject);
+    procedure bnt_multiClick(Sender: TObject);
+    procedure bnt_igualClick(Sender: TObject);
+    procedure btn_1Click(Sender: TObject);
+    procedure btn_2Click(Sender: TObject);
+    procedure btn_3Click(Sender: TObject);
+    procedure btn_4Click(Sender: TObject);
+    procedure btn_5Click(Sender: TObject);
+    procedure btn_6Click(Sender: TObject);
+    procedure btn_7Click(Sender: TObject);
+    procedure btn_8Click(Sender: TObject);
+    procedure btn_9Click(Sender: TObject);
+    procedure bnt_0Click(Sender: TObject);
+    procedure btn_pontoClick(Sender: TObject);
+    procedure Btn_ZeraClick(Sender: TObject);
+    procedure Btn_apagarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.fmx}
+
+procedure TForm1.bnt_0Click(Sender: TObject);
+begin
+   if Lb_Operador.Text = '.' then
+      begin
+        Lb_n1.Text := Lb_n1.Text + '0' ;
+      end
+    else
+       begin
+         Lb_n2.Text := Lb_n2.Text + '0' ;
+        end;
+
+end;
+
+procedure TForm1.bnt_adicaoClick(Sender: TObject);
+var cont : string;
+
+begin
+Lb_Operador.Text := '+';
+bnt_adicao.Enabled := False ;
+bnt_multi.Enabled := true ;
+bnt_subtracao.Enabled := true ;
+bnt_divicao.Enabled := true ;
+
+
+end;
+
+procedure TForm1.bnt_divicaoClick(Sender: TObject);
+begin
+Lb_Operador.Text := '/';
+bnt_adicao.Enabled := true ;
+bnt_multi.Enabled := true ;
+bnt_subtracao.Enabled := true ;
+bnt_divicao.Enabled := False ;
+end;
+
+procedure TForm1.bnt_igualClick(Sender: TObject);
+ var n1, n2 : Double ;
+ var c : Char ;
+
+begin
+      n1 := StrToFloat(Lb_n1.Text);
+      n2 := StrToFloat(Lb_n2.Text);
+      {efetuando a soma
+      if (Lb_Operador.Text = '+') then
+      begin
+        ShowMessage (FloatToStr (n1 + n2));
+      end; }
+      //utilização do switch case
+      c := Lb_Operador.Text[1];
+    case  c of
+     '+':
+     begin
+         ShowMessage (FloatToStr (n1 + n2));
+     end;
+
+        '-':
+     begin
+         ShowMessage (FloatToStr (n1 - n2));
+     end;
+        '/':
+     begin
+         ShowMessage (FloatToStr (n1 / n2));
+     end;
+        'x':
+     begin
+         ShowMessage (FloatToStr (n1 * n2));
+     end;
+
+    end;
+
+       Lb_n1.Text := ''  ;
+       Lb_n2.Text := ''  ;
+       Lb_Operador.Text := '.' ;
+
+
+end;
+
+procedure TForm1.bnt_multiClick(Sender: TObject);
+begin
+Lb_Operador.Text := 'x';
+bnt_adicao.Enabled := true ;
+bnt_multi.Enabled := False ;
+bnt_subtracao.Enabled := true ;
+bnt_divicao.Enabled := true ;
+end;
+
+procedure TForm1.bnt_subtracaoClick(Sender: TObject);
+begin
+Lb_Operador.Text := '-';
+bnt_adicao.Enabled := true ;
+bnt_multi.Enabled := true ;
+bnt_subtracao.Enabled := False ;
+bnt_divicao.Enabled := true ;
+end;
+
+procedure TForm1.btn_1Click(Sender: TObject);
+begin
+
+if Lb_Operador.Text = '.' then
+   begin
+     Lb_n1.Text := Lb_n1.Text + '1';
+   end
+else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '1';
+  end;
+
+end;
+
+procedure TForm1.btn_2Click(Sender: TObject);
+begin
+if Lb_Operador.Text = '.' then
+   begin
+     Lb_n1.Text := Lb_n1.Text + '2';
+   end
+else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '2';
+  end;
+end;
+
+procedure TForm1.btn_3Click(Sender: TObject);
+begin
+if Lb_Operador.Text = '.' then
+   begin
+     Lb_n1.Text := Lb_n1.Text + '3';
+   end
+else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '3';
+  end;
+end;
+
+procedure TForm1.btn_4Click(Sender: TObject);
+begin
+ if Lb_Operador.Text = '.' then
+  begin
+    Lb_n1.Text := Lb_n1.Text + '4';
+  end
+  else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '4';
+  end;
+
+end;
+
+procedure TForm1.btn_5Click(Sender: TObject);
+begin
+ if Lb_Operador.Text = '.' then
+ begin
+   Lb_n1.Text := Lb_n1.Text + '5';
+ end
+ else
+ begin
+   Lb_n2.Text := Lb_n2.Text + '5';
+ end;
+
+end;
+
+procedure TForm1.btn_6Click(Sender: TObject);
+begin
+  if Lb_Operador.Text = '.' then
+  begin
+    Lb_n1.Text := Lb_n1.Text + '6';
+  end
+  else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '6';
+  end;
+end;
+
+procedure TForm1.btn_7Click(Sender: TObject);
+begin
+ if Lb_Operador.Text = '.' then
+  begin
+    Lb_n1.Text := Lb_n1.Text + '7';
+  end
+  else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '7';
+  end;
+end;
+
+procedure TForm1.btn_8Click(Sender: TObject);
+begin
+ if Lb_Operador.Text = '.' then
+  begin
+    Lb_n1.Text := Lb_n1.Text + '8';
+  end
+  else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '8';
+  end;
+end;
+
+procedure TForm1.btn_9Click(Sender: TObject);
+begin
+ if Lb_Operador.Text = '.' then
+  begin
+    Lb_n1.Text := Lb_n1.Text + '9';
+  end
+  else
+  begin
+    Lb_n2.Text := Lb_n2.Text + '9';
+  end;
+end;
+
+procedure TForm1.Btn_apagarClick(Sender: TObject);
+begin
+  if Lb_Operador.Text = '.' then
+      begin
+        Lb_n1.Text := Copy(Lb_n1.Text, 0, Length(Lb_n1.Text) -1);
+      end
+  else
+      begin
+        Lb_n2.Text := Copy(Lb_n2.Text, 0, Length(Lb_n2.Text) -1);
+      end;
+
+end;
+
+procedure TForm1.btn_pontoClick(Sender: TObject);
+begin
+  if Lb_Operador.Text = '.' then
+    begin
+      Lb_n1.Text := Lb_n1.Text + ',';
+    end
+  else
+      begin
+      Lb_n2.Text := Lb_n2.Text + ',';
+      end;
+end;
+
+
+
+end.
